@@ -92,7 +92,7 @@ def funcionClaveNachoCrudo():
 		print str(i)+" "+str(horarios_ocupados[i])
 	for i in sorted(horarios_juegos):
 		print str(i)+str(horarios_juegos[i])
-
+	#puntajes por juego
 	puntaje_juegos={}
 
 	puntaje_juegos['Juego1']=3
