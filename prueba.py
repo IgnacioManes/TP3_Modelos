@@ -3,6 +3,7 @@
 import unicodedata
 import datetime
 from HorariosDIsponibles import *
+from SeleccionadorJuegos import *
 from dateutil import parser
 from colorama import Fore, init
 
@@ -172,6 +173,8 @@ def funcionClaveNachoCrudo():
     print(horarios_disponibles)
 
 
+    puntaje_juegos = SeteoPuntajes()
+    seleccionador_juegos=SeleccionadorJuegos(duraciones_juegos,puntaje_juegos, horarios_disponibles.MinutosLibres() )
 
 
 

@@ -25,6 +25,13 @@ class HorariosDIsponibles:
                 return x
         return None
 
+    def MinutosLibres(self):
+        list=[]
+        for x in range(0, 745):
+            if(self.disponible[x]==False):
+                list.append(x)
+        return list
+
 
     def __str__(self):
         minutos_ocupados=[]
