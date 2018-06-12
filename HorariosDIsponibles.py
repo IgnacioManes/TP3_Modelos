@@ -20,7 +20,6 @@ class HorariosDIsponibles:
         return True
 
     def EncontrarMinutoDisponible(self, inicio):
-        print inicio
         for x in range(inicio, len(self.disponible)-1):
             if(self.disponible[x]==False):
                 return x
