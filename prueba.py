@@ -2,7 +2,7 @@
 # -*- coding: latin-1 -*-
 import unicodedata
 import datetime
-import HorariosDIsponibles
+from HorariosDIsponibles import *
 from dateutil import parser
 from colorama import Fore, init
 
@@ -31,6 +31,8 @@ class TimeSlot:
 
     def __lt__(self, other):
         return self.duracion < other.duracion
+
+
 
 
 
@@ -126,22 +128,52 @@ def SeteoPuntajes():
     return puntaje_juegos
 
 
-def CompletarEspacios():
 
 
 def funcionClaveNachoCrudo():
     duraciones_juegos = AnalizoArchivo()
-    horarios_disponibles=HorariosDIsponibles()
+    horarios_disponibles=HorariosDIsponibles(745)
         # inicializacion indispensables
     indispensables = (3, 4, 5, 6, 9, 14, 15, 18, 19, 22, 23)
-    horarios_ocupados = {}
-    horarios_juegos = {}
 
 
+    minuto_disponible = 0
     for juego in sorted(indispensables):
-        juego_str = 'Juego' + str(juego)
-        # print len(duraciones_juegos[juego])
-        tiempos_por_juego = map(lambda x: x.duracion, duraciones_juegos[juego_str])
+        print(juego)
+        nombre_juego = 'Juego' + str(juego)
+
+        sigo_buscando=True
+        minuto_disponible= horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
+        print minuto_disponible
+        while(minuto_disponible!=None and sigo_buscando):
+
+            duracion_juego_min_actual= duraciones_juegos[nombre_juego][minuto_disponible].duracion
+            if(horarios_disponibles.EstanDisponiblesMinutos(minuto_disponible, duracion_juego_min_actual)):
+                sigo_buscando=False
+                print minuto_disponible
+                horarios_disponibles.AgregarActivdad(nombre_juego,minuto_disponible,duracion_juego_min_actual)
+            else:
+                minuto_disponible= horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
+                print(minuto_disponible)
+
+        print(horarios_disponibles)
+
+
+
+
+
+
+
+
+
+
+
+
+
+        """
+        horarios_ocupados = {}
+        horarios_juegos = {}        
+        tiempos_por_juego = map(lambda x: x.duracion, duraciones_juegos[nombre_juego])
         maximo = max(tiempos_por_juego)
         asignar = False
         cotaSuperior = 0
@@ -163,8 +195,8 @@ def funcionClaveNachoCrudo():
                             break
                     if (asignar):
                         for j in range(0, cota):
-                            horarios_ocupados[i + j] = juego_str
-                        horarios_juegos[i] = (juego_str, tiempo_juego)
+                            horarios_ocupados[i + j] = nombre_juego
+                        horarios_juegos[i] = (nombre_juego, tiempo_juego)
                         break
             if (not asignar):
                 tiempo_juego = tiempo_juego + 1
@@ -185,7 +217,7 @@ def funcionClaveNachoCrudo():
     print "Puntaje " + str(puntaje)
 
 
-"""
+
 		while(tiempo_juego<=maximo):
 			aux=0
 			for i in range(0, len(tiempo_por_juego[juego])-1):
