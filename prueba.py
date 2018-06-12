@@ -2,6 +2,7 @@
 # -*- coding: latin-1 -*-
 import unicodedata
 import datetime
+import HorariosDIsponibles
 from dateutil import parser
 from colorama import Fore, init
 
@@ -124,26 +125,28 @@ def SeteoPuntajes():
     puntaje_juegos['Juego23'] = 0
     return puntaje_juegos
 
-def funcionClaveNachoCrudo():
-    tiempo_por_juego = AnalizoArchivo()
 
-    # inicializacion indispensables
+def CompletarEspacios():
+
+
+def funcionClaveNachoCrudo():
+    duraciones_juegos = AnalizoArchivo()
+    horarios_disponibles=HorariosDIsponibles()
+        # inicializacion indispensables
     indispensables = (3, 4, 5, 6, 9, 14, 15, 18, 19, 22, 23)
     horarios_ocupados = {}
     horarios_juegos = {}
-    """
-    for i in (tiempo_por_juego):
-        print str(i)+' '+str(len(tiempo_por_juego[i]))
-    """
+
+
     for juego in sorted(indispensables):
         juego_str = 'Juego' + str(juego)
-        # print len(tiempo_por_juego[juego])
-        tiempos_por_juego = map(lambda x: x.duracion, tiempo_por_juego[juego_str])
+        # print len(duraciones_juegos[juego])
+        tiempos_por_juego = map(lambda x: x.duracion, duraciones_juegos[juego_str])
         maximo = max(tiempos_por_juego)
         asignar = False
         cotaSuperior = 0
         cotaInferior = 0
-        tiempo_juego = 1
+        tiempo_juego = 1 # no deberia ser 0 ?
         horario = 0
         while (tiempo_juego <= maximo):
             aux = 0
