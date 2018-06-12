@@ -20,6 +20,7 @@ class HorariosDIsponibles:
         return True
 
     def EncontrarMinutoDisponible(self, inicio):
+        print inicio
         for x in range(inicio, len(self.disponible)-1):
             if(self.disponible[x]==False):
                 return x
@@ -32,7 +33,7 @@ class HorariosDIsponibles:
         minutos_ocupados.sort()
         resultado=""
         for m in minutos_ocupados:
-             resultado="En el minuto "+ str(m) + " hago fila para " + self.actividades[m][0]+ " durante " + str(self.actividades[m][1]) + " minutos."
+             resultado+="En el minuto "+ str(m) + " hago fila para " + self.actividades[m][0]+ " durante " + str(self.actividades[m][1]) + " minutos.\n"
         return  resultado
 
 

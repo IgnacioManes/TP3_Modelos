@@ -127,39 +127,49 @@ def SeteoPuntajes():
     puntaje_juegos['Juego23'] = 0
     return puntaje_juegos
 
-
-
-
+""""
+def MinutosDelJuegoConMenorWaittime(duraciones, nombre_juego):
+    datos= duraciones[nombre_juego]
+    min_duracion= 200
+    resultado=[]
+    for dato in datos:
+        if(dato.duracion<min_duracion):
+            resultado=[dato]
+            min_duracion=dato.duracion
+        elif(dato.duracion ==min_duracion):
+            resultado.append(dato)
+    return resultado
+"""
 def funcionClaveNachoCrudo():
     duraciones_juegos = AnalizoArchivo()
-    horarios_disponibles=HorariosDIsponibles(745)
-        # inicializacion indispensables
+    horarios_disponibles=HorariosDIsponibles(1000)
+     # inicializacion indispensables
     indispensables = (3, 4, 5, 6, 9, 14, 15, 18, 19, 22, 23)
-
-
     minuto_disponible = 0
+
     for juego in sorted(indispensables):
         print(juego)
-        nombre_juego = 'Juego' + str(juego)
-
         sigo_buscando=True
-        minuto_disponible= horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
+        nombre_juego = 'Juego' + str(juego)
+        #minutos_minimos=MinutosDelJuegoConMenorWaittime(duraciones_juegos,nombre_juego)
+        #minuto_minimo= minutos_minimos.pop()
+        #minuto_disponible= horarios_disponibles.EncontrarMinutoDisponible(minuto_minimo.minuto)
+        minuto_disponible = horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
         print minuto_disponible
-        while(minuto_disponible!=None and sigo_buscando):
+
+        while(minuto_disponible!=None and sigo_buscando): #si no recorro en orden voy a tener que modificar eso
 
             duracion_juego_min_actual= duraciones_juegos[nombre_juego][minuto_disponible].duracion
-            if(horarios_disponibles.EstanDisponiblesMinutos(minuto_disponible, duracion_juego_min_actual)):
+            if(horarios_disponibles.EstanDisponiblesMinutos(minuto_disponible , duracion_juego_min_actual)):
                 sigo_buscando=False
-                print minuto_disponible
-                horarios_disponibles.AgregarActivdad(nombre_juego,minuto_disponible,duracion_juego_min_actual)
+                horarios_disponibles.AgregarActivdad(nombre_juego, minuto_disponible, duracion_juego_min_actual)
+
             else:
-                minuto_disponible= horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
-                print(minuto_disponible)
+              #  minuto_minimo = minutos_minimos.pop()
+               # minuto_disponible= horarios_disponibles.EncontrarMinutoDisponible(minuto_minimo.minuto)
+              minuto_disponible = horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
 
-        print(horarios_disponibles)
-
-
-
+    print(horarios_disponibles)
 
 
 
@@ -170,7 +180,10 @@ def funcionClaveNachoCrudo():
 
 
 
-        """
+
+
+
+    """
         horarios_ocupados = {}
         horarios_juegos = {}        
         tiempos_por_juego = map(lambda x: x.duracion, duraciones_juegos[nombre_juego])
