@@ -57,11 +57,9 @@ def AnalizoArchivo():
                 #print("asd")
 
                 slots = []
-
                 for key,value in enumerate(map(int, magia.split(','))):
                     timeSlot = TimeSlot(key,int(value))
                     slots.append(timeSlot)
-
 
                 tiempo_por_juego['Juego' + str(j)] = slots
             magia = ''
@@ -71,8 +69,6 @@ def AnalizoArchivo():
         else:
             i = i + 1
             juego = arrayArch[1]
-
-
 
         if (magia == ''):
             magia = arrayArch[2]
@@ -100,6 +96,33 @@ def AnalizoArchivo():
 
     return tiempo_por_juego
 
+
+def SeteoPuntajes():
+    puntaje_juegos= {}
+    puntaje_juegos['Juego1'] = 3
+    puntaje_juegos['Juego2'] = 4
+    puntaje_juegos['Juego3'] = 5
+    puntaje_juegos['Juego4'] = 10
+    puntaje_juegos['Juego5'] = 7
+    puntaje_juegos['Juego6'] = 2
+    puntaje_juegos['Juego7'] = 3
+    puntaje_juegos['Juego8'] = 4
+    puntaje_juegos['Juego9'] = 6
+    puntaje_juegos['Juego10'] = 1
+    puntaje_juegos['Juego11'] = 9
+    puntaje_juegos['Juego12'] = 2
+    puntaje_juegos['Juego13'] = 0
+    puntaje_juegos['Juego14'] = 6
+    puntaje_juegos['Juego15'] = 2
+    puntaje_juegos['Juego16'] = 4
+    puntaje_juegos['Juego17'] = 2
+    puntaje_juegos['Juego18'] = 6
+    puntaje_juegos['Juego19'] = 1
+    puntaje_juegos['Juego20'] = 0
+    puntaje_juegos['Juego21'] = 1
+    puntaje_juegos['Juego22'] = 2
+    puntaje_juegos['Juego23'] = 0
+    return puntaje_juegos
 
 def funcionClaveNachoCrudo():
     tiempo_por_juego = AnalizoArchivo()
@@ -149,32 +172,9 @@ def funcionClaveNachoCrudo():
         print str(i) + " " + str(horarios_ocupados[i])
     for i in sorted(horarios_juegos):
         print str(i) + str(horarios_juegos[i])
-    # puntajes por juego
-    puntaje_juegos = {}
 
-    puntaje_juegos['Juego1'] = 3
-    puntaje_juegos['Juego2'] = 4
-    puntaje_juegos['Juego3'] = 5
-    puntaje_juegos['Juego4'] = 10
-    puntaje_juegos['Juego5'] = 7
-    puntaje_juegos['Juego6'] = 2
-    puntaje_juegos['Juego7'] = 3
-    puntaje_juegos['Juego8'] = 4
-    puntaje_juegos['Juego9'] = 6
-    puntaje_juegos['Juego10'] = 1
-    puntaje_juegos['Juego11'] = 9
-    puntaje_juegos['Juego12'] = 2
-    puntaje_juegos['Juego13'] = 0
-    puntaje_juegos['Juego14'] = 6
-    puntaje_juegos['Juego15'] = 2
-    puntaje_juegos['Juego16'] = 4
-    puntaje_juegos['Juego17'] = 2
-    puntaje_juegos['Juego18'] = 6
-    puntaje_juegos['Juego19'] = 1
-    puntaje_juegos['Juego20'] = 0
-    puntaje_juegos['Juego21'] = 1
-    puntaje_juegos['Juego22'] = 2
-    puntaje_juegos['Juego23'] = 0
+    # puntajes por juego
+    puntaje_juegos = SeteoPuntajes()
 
     puntaje = 0
     for i in sorted(horarios_juegos):
