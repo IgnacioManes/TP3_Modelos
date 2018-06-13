@@ -32,6 +32,12 @@ class HorariosDIsponibles:
                 list.append(x)
         return list
 
+    def Puntaje(self,puntajes):
+        puntaje=0
+        minutos_ocupados= self.actividades.keys()
+        for m in minutos_ocupados:
+            puntaje+=puntajes[self.actividades[m][0]]
+        return puntaje
 
     def __str__(self):
         minutos_ocupados=[]
