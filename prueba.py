@@ -102,27 +102,27 @@ def AnalizoArchivo():
 
 def SeteoPuntajes():
     puntaje_juegos= {}
-    puntaje_juegos['Juego1'] = 3
+    puntaje_juegos['Juego1'] = 1
     puntaje_juegos['Juego2'] = 4
-    puntaje_juegos['Juego3'] = 5
-    puntaje_juegos['Juego4'] = 10
-    puntaje_juegos['Juego5'] = 7
-    puntaje_juegos['Juego6'] = 2
-    puntaje_juegos['Juego7'] = 3
-    puntaje_juegos['Juego8'] = 4
-    puntaje_juegos['Juego9'] = 6
-    puntaje_juegos['Juego10'] = 1
-    puntaje_juegos['Juego11'] = 9
-    puntaje_juegos['Juego12'] = 2
-    puntaje_juegos['Juego13'] = 0
-    puntaje_juegos['Juego14'] = 6
-    puntaje_juegos['Juego15'] = 2
-    puntaje_juegos['Juego16'] = 4
-    puntaje_juegos['Juego17'] = 2
-    puntaje_juegos['Juego18'] = 6
-    puntaje_juegos['Juego19'] = 1
-    puntaje_juegos['Juego20'] = 0
-    puntaje_juegos['Juego21'] = 1
+    puntaje_juegos['Juego3'] = 6
+    puntaje_juegos['Juego4'] = 6
+    puntaje_juegos['Juego5'] = 0
+    puntaje_juegos['Juego6'] = 3
+    puntaje_juegos['Juego7'] = 5
+    puntaje_juegos['Juego8'] = 2
+    puntaje_juegos['Juego9'] = 2
+    puntaje_juegos['Juego10'] = 4
+    puntaje_juegos['Juego11'] = 4
+    puntaje_juegos['Juego12'] = 1
+    puntaje_juegos['Juego13'] = 6
+    puntaje_juegos['Juego14'] = 0
+    puntaje_juegos['Juego15'] = 7
+    puntaje_juegos['Juego16'] = 10
+    puntaje_juegos['Juego17'] = 9
+    puntaje_juegos['Juego18'] = 3
+    puntaje_juegos['Juego19'] = 2
+    puntaje_juegos['Juego20'] = 1
+    puntaje_juegos['Juego21'] = 2
     puntaje_juegos['Juego22'] = 2
     puntaje_juegos['Juego23'] = 0
     return puntaje_juegos
@@ -143,7 +143,7 @@ def funcionClaveNachoCrudo():
     duraciones_juegos = AnalizoArchivo()
     horarios_disponibles=HorariosDIsponibles(1000)
      # inicializacion indispensables
-    indispensables = (3, 4, 5, 6, 9, 14, 15, 18, 19, 22, 23)
+    indispensables = (1,3,4,7,9,13,15,16,21,22 ,23)
     minuto_disponible = 0
 
     for juego in sorted(indispensables):
@@ -168,9 +168,7 @@ def funcionClaveNachoCrudo():
                 horarios_disponibles.AgregarActivdad(nombre_juego, minuto_disponible, duracion_juego_min_actual)
 
             else:
-            	"""	if (juego==14):
-            		print len(minutos_minimos)
-            	"""
+
                 if len(minutos_minimos)==0:
                     minutos_minimos = MinutosDelJuegoConMenorWaittime(time_slots_juego_actual)
 

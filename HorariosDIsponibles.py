@@ -42,7 +42,7 @@ class HorariosDIsponibles:
     def __str__(self):
         minutos_ocupados=[]
         minutos_ocupados= self.actividades.keys()
-        minutos_ocupados.sort()
+        """minutos_ocupados.sort()"""
         resultado=""
         for m in minutos_ocupados:
              resultado+="En el minuto "+ str(m) + " hago fila para " + self.actividades[m][0]+ " durante " + str(self.actividades[m][1]) + " minutos.\n"

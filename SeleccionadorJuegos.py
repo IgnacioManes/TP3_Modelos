@@ -24,7 +24,7 @@ class SeleccionadorJuegos:
                         minutos.AgregarActivdad((self.mejoresJuegos[min][0]), min, self.mejoresJuegos[min][1])
                     self.mejoresValores.pop(min)
 
-        print "a"
+
    # def ObtenerMejorJuego(self):
 
 
