@@ -46,6 +46,30 @@ class HorariosDIsponibles:
         resultado=""
         for m in minutos_ocupados:
              resultado+="En el minuto "+ str(m) + " hago fila para " + self.actividades[m][0]+ " durante " + str(self.actividades[m][1]) + " minutos.\n"
+        resultado=resultado.replace("Juego1 ","its a small world")
+        resultado=resultado.replace("Juego2 ","Astro Orbiter")
+        resultado=resultado.replace("Juego3 ","Big Thunder Mountain Railroad")
+        resultado=resultado.replace("Juego4 ","Buzz Lightyears Space Ranger Spin")
+        resultado=resultado.replace("Juego5 ","Dumbo the Flying Elephant")
+        resultado=resultado.replace("Juego6 ","Enchanted Tales with Belle")
+        resultado=resultado.replace("Juego7 ","Haunted Mansion")
+        resultado=resultado.replace("Juego8 ","Jungle Cruise")
+        resultado=resultado.replace("Juego9 ","Mad Tea Party")
+        resultado=resultado.replace("Juego10 ","Mickeys PhilharMagic")
+        resultado=resultado.replace("Juego11 ","Monsters Inc. Laugh Floor")
+        resultado=resultado.replace("Juego12 ","Peter Pans Flight")
+        resultado=resultado.replace("Juego13 ","Pirates of the Caribbean")
+        resultado=resultado.replace("Juego14 ","Prince Charming Regal Carrousel")
+        resultado=resultado.replace("Juego15 ","Seven Dwarfs Mine Train")
+        resultado=resultado.replace("Juego16 ","Space Mountain")
+        resultado=resultado.replace("Juego17 ","Splash Mountain")
+        resultado=resultado.replace("Juego18 ","The Barnstormer")
+        resultado=resultado.replace("Juego19 ","The Magic Carpets of Aladdin")
+        resultado=resultado.replace("Juego20 ","The Many Adventures of Winnie the Pooh")
+        resultado=resultado.replace("Juego21 ","Tomorrowland Speedway")
+        resultado=resultado.replace("Juego22 ","Under the Sea - Journey of The Little Mermaid")
+        resultado=resultado.replace("Juego23 ","Pizza")
         return  resultado
+
 
 
