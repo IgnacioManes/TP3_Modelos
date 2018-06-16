@@ -39,6 +39,35 @@ class HorariosDIsponibles:
             puntaje+=puntajes[self.actividades[m][0]]
         return puntaje
 
+
+    def contarJuegosNiniosDistintos(self):
+        cantNinios=0
+        ninios=("Juego1","Juego5","Juego9","Juego11","Juego12","Juego14","Juego18","Juego19","Juego20","Juego22")
+        for ninio in ninios:
+            for m in self.actividades.keys():
+                if self.actividades[m][0] == ninio :
+                   cantNinios = cantNinios+1
+                   break
+        return cantNinios
+
+    def contarMontaniasRusasDistintas(self):
+        cantmontanias=0
+        montanias=("Juego3","Juego15","Juego16","Juego17")
+        for montania in montanias:
+            for m in self.actividades.keys():
+                if self.actividades[m][0] == montania :
+                   cantmontanias = cantmontanias+1
+                   break
+        return cantmontanias
+
+    def subieronPhilarMagic(self):
+        philarMagic=False
+        for m in self.actividades.keys():
+            if self.actividades[m][0] == "Juego10":
+               philarMagic = True
+               break
+        return philarMagic
+
     def __str__(self):
         minutos_ocupados=[]
         minutos_ocupados= self.actividades.keys()
@@ -70,6 +99,3 @@ class HorariosDIsponibles:
         resultado=resultado.replace("Juego22 ","Under the Sea - Journey of The Little Mermaid")
         resultado=resultado.replace("Juego23 ","Pizza")
         return  resultado
-
-
-

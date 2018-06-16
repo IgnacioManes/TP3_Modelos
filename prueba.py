@@ -180,11 +180,14 @@ def funcionClaveNachoCrudo():
 
 
     puntaje_juegos = SeteoPuntajes()
-    seleccionador_juegos=SeleccionadorJuegos(duraciones_juegos,puntaje_juegos, horarios_disponibles )
+    seleccionador_juegos = SeleccionadorJuegos(duraciones_juegos,puntaje_juegos, horarios_disponibles )
+    seleccionador_juegos.chequearResticciones(horarios_disponibles)
 
-    print(horarios_disponibles)
-    print(horarios_disponibles.MinutosLibres())
-    print("Puntaje"+str(horarios_disponibles.Puntaje(puntaje_juegos)))
+    if seleccionador_juegos.chequearResticciones(horarios_disponibles) :
+    	print(horarios_disponibles)
+    	print(horarios_disponibles.MinutosLibres())
+    	print("Puntaje"+str(horarios_disponibles.Puntaje(puntaje_juegos)))
+
 
 
 
