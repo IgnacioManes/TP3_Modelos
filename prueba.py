@@ -6,7 +6,7 @@ from HorariosDIsponibles import *
 from SeleccionadorJuegos import *
 from dateutil import parser
 from colorama import Fore, init
-
+import time
 init()
 import csv
 
@@ -177,16 +177,15 @@ def funcionClaveNachoCrudo():
                 #minuto_disponible = horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
 
     
-
-
     puntaje_juegos = SeteoPuntajes()
+    
     seleccionador_juegos = SeleccionadorJuegos(duraciones_juegos,puntaje_juegos, horarios_disponibles )
-    seleccionador_juegos.chequearResticciones(horarios_disponibles)
-
+	
+    print(horarios_disponibles)
+    
     if seleccionador_juegos.chequearResticciones(horarios_disponibles) :
-    	print(horarios_disponibles)
     	print(horarios_disponibles.MinutosLibres())
-    	print("Puntaje"+str(horarios_disponibles.Puntaje(puntaje_juegos)))
+    	print("Puntaje: "+str(horarios_disponibles.Puntaje(puntaje_juegos)))
 
 
 
@@ -273,4 +272,7 @@ def funcionClaveNachoCrudo():
 	for i in (horarios_ocupados):
 		print str(i)+str(horarios_ocupados[i])
 """
+
+tiempo =  int(round(time.time() * 1000))
 funcionClaveNachoCrudo()
+print"Tiempo transcurrido " + str( int(round(time.time() * 1000))-tiempo) +" ms"
