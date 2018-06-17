@@ -139,7 +139,7 @@ def MinutosDelJuegoConMenorWaittime(duraciones):
             resultado.append(dato.minuto)
     return resultado
 
-def funcionClaveNachoCrudo():
+def main():
     duraciones_juegos = AnalizoArchivo()
     horarios_disponibles=HorariosDIsponibles(1000)
      # inicializacion indispensables
@@ -274,5 +274,5 @@ def funcionClaveNachoCrudo():
 """
 
 tiempo =  int(round(time.time() * 1000))
-funcionClaveNachoCrudo()
+main()
 print"Tiempo transcurrido " + str( int(round(time.time() * 1000))-tiempo) +" ms"
