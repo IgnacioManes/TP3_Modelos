@@ -9,6 +9,8 @@ from colorama import Fore, init
 import time
 init()
 import csv
+import random
+
 
 print(Fore.GREEN + "Iniciando")
 
@@ -88,8 +90,12 @@ def AnalizoArchivo():
     array_pizza = []
     slots = []
     for j in range(0, 746 - 1):
-        timeSlot = TimeSlot(j, 40)
-        slots.append(timeSlot)
+    	if(j<46):
+        	timeSlot = TimeSlot(j, 40)
+        	slots.append(timeSlot)
+        else:
+        	timeSlot = TimeSlot(j, 400000)
+        	slots.append(timeSlot)
     # if(j<):
     # else:
     #	array_pizza(j)=0
@@ -137,28 +143,38 @@ def MinutosDelJuegoConMenorWaittime(duraciones):
             min_duracion=dato.duracion
         elif(dato.duracion ==min_duracion):
             resultado.append(dato.minuto)
+    for dato in duraciones:
+    	if dato.duracion==min_duracion:
+    		duraciones.remove(dato)
     return resultado
 
 def main():
     duraciones_juegos = AnalizoArchivo()
     horarios_disponibles=HorariosDIsponibles(1000)
      # inicializacion indispensables
-    indispensables = (1,3,4,7,9,13,15,16,21,22 ,23)
-    minuto_disponible = 0
+    indispensables = [1,3,4,7,9,13,15,16,21,22]
+    minuto_disponible = 0 
+    minutos_zapi=range(45)
 
-    for juego in sorted(indispensables):
+    minutos_zapi=sorted(minutos_zapi, key=lambda k: random.random()) 
+    horarios_disponibles.AgregarActivdad("Juego23", 45, 40)
+
+
+    for juego in sorted(indispensables, key=lambda k: random.random()):
         sigo_buscando=True
         nombre_juego = 'Juego' + str(juego)
 
         time_slots_juego_actual= duraciones_juegos[nombre_juego]
         minutos_minimos=MinutosDelJuegoConMenorWaittime(time_slots_juego_actual)
+        print minutos_minimos
         minuto= minutos_minimos.pop(0) #Agarro alguno que es minimo podria ser random
         minuto_disponible= horarios_disponibles.EncontrarMinutoDisponible(minuto)
+
         #minuto_disponible = horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
 
 
         while(minuto_disponible!=None and sigo_buscando): #si no recorro en orden voy a tener que modificar eso
-
+            print nombre_juego+" "+str(minuto_disponible)
             duracion_juego_min_actual= duraciones_juegos[nombre_juego][minuto_disponible].duracion
             if(horarios_disponibles.EstanDisponiblesMinutos(minuto_disponible , duracion_juego_min_actual)):
                 sigo_buscando=False
@@ -168,10 +184,9 @@ def main():
                 horarios_disponibles.AgregarActivdad(nombre_juego, minuto_disponible, duracion_juego_min_actual)
 
             else:
-
                 if len(minutos_minimos)==0:
                     minutos_minimos = MinutosDelJuegoConMenorWaittime(time_slots_juego_actual)
-
+                print minutos_minimos
                 minuto = minutos_minimos.pop()
                 minuto_disponible= horarios_disponibles.EncontrarMinutoDisponible(minuto)
                 #minuto_disponible = horarios_disponibles.EncontrarMinutoDisponible(minuto_disponible)
@@ -184,95 +199,12 @@ def main():
     print(horarios_disponibles)
     
     if seleccionador_juegos.chequearResticciones(horarios_disponibles) :
+    	"""
     	print(horarios_disponibles.MinutosLibres())
+    	"""
     	print("Puntaje: "+str(horarios_disponibles.Puntaje(puntaje_juegos)))
+	
 
-
-
-
-
-
-
-
-
-    """
-        horarios_ocupados = {}
-        horarios_juegos = {}        
-        tiempos_por_juego = map(lambda x: x.duracion, duraciones_juegos[nombre_juego])
-        maximo = max(tiempos_por_juego)
-        asignar = False
-        cotaSuperior = 0
-        cotaInferior = 0
-        tiempo_juego = 1 # no deberia ser 0 ?
-        horario = 0
-        while (tiempo_juego <= maximo):
-            aux = 0
-            for i in range(0, len(tiempos_por_juego) - 1):
-                if (tiempos_por_juego[i] == tiempo_juego and i not in horarios_ocupados.keys()):
-                    asignar = True
-                    if (tiempo_juego == 0):
-                        cota = 0
-                    else:
-                        cota = tiempo_juego - 1
-                    for j in range(1, tiempo_juego - 1):
-                        if (i + j in horarios_ocupados.keys()):
-                            asignar = False
-                            break
-                    if (asignar):
-                        for j in range(0, cota):
-                            horarios_ocupados[i + j] = nombre_juego
-                        horarios_juegos[i] = (nombre_juego, tiempo_juego)
-                        break
-            if (not asignar):
-                tiempo_juego = tiempo_juego + 1
-            else:
-                tiempo_juego = maximo + 1
-
-    for i in sorted(horarios_ocupados):
-        print str(i) + " " + str(horarios_ocupados[i])
-    for i in sorted(horarios_juegos):
-        print str(i) + str(horarios_juegos[i])
-
-    # puntajes por juego
-    puntaje_juegos = SeteoPuntajes()
-
-    puntaje = 0
-    for i in sorted(horarios_juegos):
-        puntaje = puntaje + puntaje_juegos[horarios_juegos[i][0]]
-    print "Puntaje " + str(puntaje)
-
-
-
-		while(tiempo_juego<=maximo):
-			aux=0
-			for i in range(0, len(tiempo_por_juego[juego])-1):
-				if(tiempo_por_juego[juego][i]==tiempo_juego and i not in horarios_ocupados.keys()):
-					asignar=True
-					for j in horarios_ocupados.keys():
-						cotaSuperior=j*10+(horarios_ocupados[j][1])
-						cotaInferior=j*10
-						horarioAAsignar=i*10
-						if(horarioAAsignar<cotaSuperior and horarioAAsignar>=cotaInferior):
-							asignar=False
-							break
-					if(asignar):
-						print juego
-						print i*10
-						print cotaInferior
-						print cotaSuperior
-						horario=i
-						break
-			if(not asignar):
-				tiempo_juego=tiempo_juego+5
-			else:
-				aux=tiempo_juego
-				tiempo_juego=maximo+1
-		horarios_ocupados[horario]=(juego,aux)
-
-	for i in (horarios_ocupados):
-		print str(i)+str(horarios_ocupados[i])
-"""
-
-tiempo =  int(round(time.time() * 1000))
+#tiempo =  int(round(time.time() * 1000))
 main()
-print"Tiempo transcurrido " + str( int(round(time.time() * 1000))-tiempo) +" ms"
+#print"Tiempo transcurrido " + str( int(round(time.time() * 1000))-tiempo) +" ms"
